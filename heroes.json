@@ -1,0 +1,29 @@
+{
+    "heroes": [
+        {
+            "id": 1,
+            "name": "Первый герой1",
+            "description": "Первый герой в рейтинге!1",
+            "element": "fire1"
+        },
+        {
+            "id": 2,
+            "name": "Неизвестный герой",
+            "description": "Скрывающийся в тени",
+            "element": "wind"
+        },
+        {
+            "id": 3,
+            "name": "Морской герой",
+            "description": "Как аквамен, но не из DC",
+            "element": "water"
+        }
+    ],
+    "filters": [
+        "all",
+        "fire",
+        "water",
+        "wind",
+        "earth"
+    ]
+}
