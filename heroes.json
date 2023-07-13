@@ -41,6 +41,18 @@
       "name": "FQFQW",
       "description": "FQW",
       "element": "water"
+    },
+    {
+      "id": "18e34f36-facd-416f-8903-64ad5c30985a",
+      "name": "fwqfc",
+      "description": "dqwa",
+      "element": "earth"
+    },
+    {
+      "id": "68335ea2-533b-49ba-a5ef-9659ecd1784f",
+      "name": "dD",
+      "description": "salan",
+      "element": "earth"
     }
   ],
   "filters": [
