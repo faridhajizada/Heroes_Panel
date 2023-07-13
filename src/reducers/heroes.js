@@ -1,50 +1,89 @@
+import { createReducer } from "@reduxjs/toolkit";
+import {
+  heroesFetching,
+  heroesFetched,
+  heroesFetchingError,
+  heroesCreated,
+  heroesDeleted,
+} from "../actions";
+
 const initialState = {
   heroes: [],
   heroesLoadingStatus: "idle",
 };
 
-const heroes = (state = initialState, action) => {
-  switch (action.type) {
-    case "HEROES_FETCHING":
-      return {
-        ...state,
-        heroesLoadingStatus: "loading",
-      };
-    case "HEROES_FETCHED":
-      return {
-        ...state,
-        heroes: action.payload,
-        // ЭТО МОЖНО СДЕЛАТЬ И ПО ДРУГОМУ
-        // Я специально показываю вариант с действиями тут, но более правильный вариант
-        // будет показан в следующем уроке
+const heroes = createReducer(
+  initialState,
+  {
+    [heroesFetching]: (state, action) => {state.heroesLoadingStatus = "loading";},
+    [heroesFetched]: (state, action) => {state.heroes = action.payload;state.heroesLoadingStatus = "idle";},
+    [heroesFetchingError]: (state, action) => {  state.heroesLoadingStatus = "error";},
+    [heroesCreated]: (state, action) => {state.heroes.push(action.payload)},
+    [heroesDeleted]: (state, action) => { state.heroes = state.heroes.filter((item) => item.id !== action.payload);},
+  },
+  [],
+  (state) => state
+);
 
-        heroesLoadingStatus: "idle",
-      };
-    case "HEROES_FETCHING_ERROR":
-      return {
-        ...state,
-        heroesLoadingStatus: "error",
-      };
+// const heroes = createReducer(initialState,builder=>{
+//   builder
+//   .addCase(heroesFetching,(state,action)=>{
+//     state.heroesLoadingStatus="loading"
+//   })
+//   .addCase(heroesFetched,(state,action)=>{
+//     state.heroes=action.payload
+//     state.heroesLoadingStatus="idle"
+//   })
+//   .addCase(heroesFetchingError,(state,action)=>{
+//     state.heroesLoadingStatus="error"
+//   })
+//   .addCase(heroesCreated,(state,action)=>{
+//     state.heroes.push(action.payload)
+//   })
+//   .addCase(heroesDeleted,(state,action)=>{
+//     state.heroes=state.heroes.filter((item)=>item.id!==action.payload)
+//   })
+//   .addDefaultCase(()=>{});
+// } )
 
-    case "HEROES_CREATED":
-      // Формируем новый массив
+// const heroes = (state = initialState, action) => {
+//   switch (action.type) {
+//     case "HEROES_FETCHING":
+//       return {
+//         ...state,
+//         heroesLoadingStatus: "loading",
+//       };
+//     case "HEROES_FETCHED":
+//       return {
+//         ...state,
+//         heroes: action.payload,
+//         heroesLoadingStatus: "idle",
+//       };
+//     case "HEROES_FETCHING_ERROR":
+//       return {
+//         ...state,
+//         heroesLoadingStatus: "error",
+//       };
 
-      return {
-        ...state,
-        heroes: [...state.heroes, action.payload],
-        // Фильтруем новые данные по фильтру, который сейчас применяется
-      };
-    case "HEROES_DELETED":
-      // Формируем новый массив
+//     case "HEROES_CREATED":
+//       // Формируем новый массив
 
-      return {
-        ...state,
-        heroes: state.heroes.filter((item) => item.id !== action.payload),
-        // Фильтруем новые данные по фильтру, который сейчас применяется
-      };
-    default:
-      return state;
-  }
-};
+//       return {
+//         ...state,
+//         heroes: [...state.heroes, action.payload],
+//         // Фильтруем новые данные по фильтру, который сейчас применяется
+//       };
+//     case "HEROES_DELETED":
+//       // Формируем новый массив
+
+//       return {
+//         ...state,
+//         heroes: state.heroes.filter((item) => item.id !== action.payload),
+//         // Фильтруем новые данные по фильтру, который сейчас применяется
+//       };
+//     default:
+//       return state;
+//   }
+// };
 
 export default heroes;
