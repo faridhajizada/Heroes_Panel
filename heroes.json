@@ -1,29 +1,73 @@
 {
-    "heroes": [
-        {
-            "id": 1,
-            "name": "Первый герой1",
-            "description": "Первый герой в рейтинге!1",
-            "element": "fire1"
-        },
-        {
-            "id": 2,
-            "name": "Неизвестный герой",
-            "description": "Скрывающийся в тени",
-            "element": "wind"
-        },
-        {
-            "id": 3,
-            "name": "Морской герой",
-            "description": "Как аквамен, но не из DC",
-            "element": "water"
-        }
-    ],
-    "filters": [
-        "all",
-        "fire",
-        "water",
-        "wind",
-        "earth"
-    ]
+  "heroes": [
+    {
+      "id": 1,
+      "name": "Первый герой",
+      "description": "Первый герой в рейтинге!",
+      "element": "fire"
+    },
+    {
+      "id": 2,
+      "name": "Неизвестный герой",
+      "description": "Скрывающийся в тени",
+      "element": "wind"
+    },
+    {
+      "id": 3,
+      "name": "Морской герой",
+      "description": "Как аквамен, но не из DC",
+      "element": "water"
+    },
+    {
+      "id": "388e5a63-1d2c-45ad-8f8f-9acf976c4555",
+      "name": "FEW",
+      "description": "fqw",
+      "element": "fire"
+    },
+    {
+      "id": "270c129a-be1a-4494-86f5-34ebae88a034",
+      "name": "FWQEFS",
+      "description": "FWEF",
+      "element": "wind"
+    },
+    {
+      "id": "2b112b6a-6164-46e5-86e3-50352e07c49e",
+      "name": "FQWSFD",
+      "description": "FWQF",
+      "element": "fire"
+    },
+    {
+      "id": "b44673f4-e280-4edf-90f5-dc3b583d3561",
+      "name": "FQFQW",
+      "description": "FQW",
+      "element": "water"
+    }
+  ],
+  "filters": [
+    {
+      "name": "all",
+      "label": "Все",
+      "className": "btn-outline-dark"
+    },
+    {
+      "name": "fire",
+      "label": "Огонь",
+      "className": "btn-danger"
+    },
+    {
+      "name": "water",
+      "label": "Вода",
+      "className": "btn-primary"
+    },
+    {
+      "name": "wind",
+      "label": "Ветер",
+      "className": "btn-success"
+    },
+    {
+      "name": "earth",
+      "label": "Земля",
+      "className": "btn-secondary"
+    }
+  ]
 }
