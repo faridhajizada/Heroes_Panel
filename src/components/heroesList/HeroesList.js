@@ -4,12 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 import { createSelector } from "reselect";
 
-import {
-  heroesFetching,
-  heroesFetched,
-  heroesFetchingError,
-  heroesDeleted,
-} from "../../actions";
+import { fetchHeroes, heroesDeleted } from "../../actions";
 import HeroesListItem from "../heroesListItem/HeroesListItem";
 import Spinner from "../spinner/Spinner";
 
@@ -40,22 +35,18 @@ const HeroesList = () => {
   // });
 
   const filteredHeroes = useSelector(filteredHeroesSelector);
-  const heroesLoadingStatus = useSelector((state) => state.heroesLoadingStatus);
+  const heroesLoadingStatus = useSelector(
+    (state) => state.heroes.heroesLoadingStatus
+  );
   const dispatch = useDispatch();
   const { request } = useHttp();
 
   useEffect(() => {
-    dispatch(heroesFetching());
-    request("http://localhost:3005/heroes")
-      .then((data) => dispatch(heroesFetched(data)))
-      .catch(() => dispatch(heroesFetchingError()));
-
-    // eslint-disable-next-line
+    dispatch(fetchHeroes(request));
   }, []);
 
   const onDelete = useCallback(
     (id) => {
-      // Удаление персонажа по его id
       request(`http://localhost:3005/heroes/${id}`, "DELETE")
         .then((data) => console.log(data, "Deleted"))
         .then(dispatch(heroesDeleted(id)))
