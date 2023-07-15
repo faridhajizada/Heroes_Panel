@@ -2,10 +2,8 @@ import { useHttp } from "../../hooks/http.hook";
 import { useEffect, useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import { createSelector } from "reselect";
-
-import { fetchHeroes} from "../../actions";
-import { heroesDeleted } from "./heroesSlice";
+import { createSelector } from "@reduxjs/toolkit";
+import { heroesDeleted, fetchHeroes } from "./heroesSlice";
 import HeroesListItem from "../heroesListItem/HeroesListItem";
 import Spinner from "../spinner/Spinner";
 
@@ -43,7 +41,7 @@ const HeroesList = () => {
   const { request } = useHttp();
 
   useEffect(() => {
-    dispatch(fetchHeroes(request));
+    dispatch(fetchHeroes());
   }, []);
 
   const onDelete = useCallback(
