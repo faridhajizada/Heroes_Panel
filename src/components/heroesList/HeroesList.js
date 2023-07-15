@@ -1,40 +1,32 @@
-import { useHttp } from "../../hooks/http.hook";
-import { useEffect, useCallback } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useCallback, useMemo } from "react";
+import { useSelector } from "react-redux";
 
-import { filteredHeroesSelector } from "./heroesSlice";
-import { heroesDeleted, fetchHeroes, selectAll } from "./heroesSlice";
+import { useGetHeroesQuery, useDeleteHeroesMutation } from "../../api/apiSlice";
 import HeroesListItem from "../heroesListItem/HeroesListItem";
 import Spinner from "../spinner/Spinner";
 
 const HeroesList = () => {
+  const { data: heroes = [], isLoading, isError } = useGetHeroesQuery();
+  const [deleteHeroes] = useDeleteHeroesMutation();
 
+  const activeFilter = useSelector((state) => state.filters.activeFilter);
 
-  const filteredHeroes = useSelector(filteredHeroesSelector);
-  const heroesLoadingStatus = useSelector(
-    (state) => state.heroes.heroesLoadingStatus
-  );
-  const dispatch = useDispatch();
-  const { request } = useHttp();
+  const filteredHeroes = useMemo(() => {
+    const filteredHeroes = heroes.slice(); //поверхностная копия
+    if (activeFilter === "all") {
+      return filteredHeroes;
+    } else {
+      return filteredHeroes.filter((item) => item.element === activeFilter);
+    }
+  }, [heroes, activeFilter]);
 
-  useEffect(() => {
-    dispatch(fetchHeroes());
-  }, []);
+  const onDelete = useCallback((id) => {
+    deleteHeroes(id);
+  }, [deleteHeroes]);
 
-  const onDelete = useCallback(
-    (id) => {
-      request(`http://localhost:3001/heroes/${id}`, "DELETE")
-        .then((data) => console.log(data, "Deleted"))
-        .then(dispatch(heroesDeleted(id)))
-        .catch((err) => console.log(err));
-
-    },
-    [request]
-  );
-
-  if (heroesLoadingStatus === "loading") {
+  if (isLoading) {
     return <Spinner />;
-  } else if (heroesLoadingStatus === "error") {
+  } else if (isError) {
     return <h5 className="text-center mt-5">Ошибка загрузки</h5>;
   }
 

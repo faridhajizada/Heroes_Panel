@@ -1,21 +1,24 @@
-import { useHttp } from "../../hooks/http.hook";
+// import { useHttp } from "../../hooks/http.hook";
 import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { v4 as uuidv4 } from "uuid";
 
 // import { heroesCreated } from "../../actions";
-import { heroesCreated } from "../heroesList/heroesSlice";
+// import { heroesCreated } from "../heroesList/heroesSlice";
+import { useCreateHeroesMutation } from "../../api/apiSlice";
 
 const HeroesAddForm = () => {
   const [heroesName, setHeroesName] = useState("");
   const [heroesDescr, setHeroesDescr] = useState("");
   const [heroesElement, setHeroesElement] = useState("");
 
+  const [createHeroes] = useCreateHeroesMutation();
+
   const { filters, filtersLoadingStatus } = useSelector(
     (state) => state.filters
   );
-  const dispatch = useDispatch();
-  const { request } = useHttp();
+  // const dispatch = useDispatch();
+  // const { request } = useHttp();
 
   const onSubmitHandler = (e) => {
     e.preventDefault();
@@ -26,11 +29,12 @@ const HeroesAddForm = () => {
       element: heroesElement,
     };
 
+    createHeroes(newHeroes).unwrap();
 
-    request("http://localhost:3005/heroes", "POST", JSON.stringify(newHeroes))
-      .then((res) => console.log(res, "Отправка успешна"))
-      .then(dispatch(heroesCreated(newHeroes)))
-      .catch((err) => console.log(err));
+    // request("http://localhost:3005/heroes", "POST", JSON.stringify(newHeroes))
+    //   .then((res) => console.log(res, "Отправка успешна"))
+    //   .then(dispatch(heroesCreated(newHeroes)))
+    //   .catch((err) => console.log(err));
 
     setHeroesName("");
     setHeroesDescr("");

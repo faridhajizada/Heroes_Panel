@@ -35,66 +35,6 @@
       "name": "FQWSFD",
       "description": "FWQF",
       "element": "fire"
-    },
-    {
-      "id": "b44673f4-e280-4edf-90f5-dc3b583d3561",
-      "name": "FQFQW",
-      "description": "FQW",
-      "element": "water"
-    },
-    {
-      "id": "18e34f36-facd-416f-8903-64ad5c30985a",
-      "name": "fwqfc",
-      "description": "dqwa",
-      "element": "earth"
-    },
-    {
-      "id": "68335ea2-533b-49ba-a5ef-9659ecd1784f",
-      "name": "dD",
-      "description": "salan",
-      "element": "earth"
-    },
-    {
-      "id": "47d5b74b-6486-481b-9c75-d1863ca6fe4f",
-      "name": "dwd",
-      "description": "dwdwdw",
-      "element": "water"
-    },
-    {
-      "id": "baa543cf-c016-4442-874c-995649862cd4",
-      "name": "vzsd",
-      "description": "vszdvsdvs`dv`sv",
-      "element": "fire"
-    },
-    {
-      "id": "8472a919-1770-40f0-a0cc-5960a7e52364",
-      "name": "a",
-      "description": "a",
-      "element": "wind"
-    },
-    {
-      "id": "b1c1f0bd-910a-420c-bdb4-54651f91d9f4",
-      "name": " dx",
-      "description": " zd",
-      "element": "wind"
-    },
-    {
-      "id": "da130f03-3442-4aa5-ae85-80093a32a2c5",
-      "name": "sasasa",
-      "description": "sasasasa",
-      "element": "water"
-    },
-    {
-      "id": "a0045d20-55b5-4483-95e7-a8789a88cbec",
-      "name": "qq",
-      "description": "qq",
-      "element": "earth"
-    },
-    {
-      "id": "aa015c9d-c381-48a1-92e6-03042ad15b45",
-      "name": "d2",
-      "description": "d21",
-      "element": "water"
     }
   ],
   "filters": [
