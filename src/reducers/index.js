@@ -17,9 +17,6 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         heroes: action.payload,
-        // ЭТО МОЖНО СДЕЛАТЬ И ПО ДРУГОМУ
-        // Я специально показываю вариант с действиями тут, но более правильный вариант
-        // будет показан в следующем уроке
 
         heroesLoadingStatus: "idle",
       };
@@ -49,23 +46,17 @@ const reducer = (state = initialState, action) => {
         ...state,
         activeFilter: action.payload,
       };
-    // Самая сложная часть - это показывать новые элементы по фильтрам
-    // при создании или удалении
     case "HEROES_CREATED":
-      // Формируем новый массив
 
       return {
         ...state,
         heroes: [...state.heroes, action.payload],
-        // Фильтруем новые данные по фильтру, который сейчас применяется
       };
     case "HEROES_DELETED":
-      // Формируем новый массив
 
       return {
         ...state,
         heroes: state.heroes.filter((item) => item.id !== action.payload),
-        // Фильтруем новые данные по фильтру, который сейчас применяется
       };
     default:
       return state;

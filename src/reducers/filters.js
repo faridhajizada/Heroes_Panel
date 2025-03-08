@@ -27,8 +27,6 @@ const filters = (state = initialState, action) => {
         ...state,
         activeFilter: action.payload,
       };
-    // Самая сложная часть - это показывать новые элементы по фильтрам
-    // при создании или удалении
 
     default:
       return state;

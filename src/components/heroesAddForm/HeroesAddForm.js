@@ -1,10 +1,7 @@
-// import { useHttp } from "../../hooks/http.hook";
 import { useState } from "react";
 import { useSelector } from "react-redux";
 import { v4 as uuidv4 } from "uuid";
 
-// import { heroesCreated } from "../../actions";
-// import { heroesCreated } from "../heroesList/heroesSlice";
 import { useCreateHeroesMutation } from "../../api/apiSlice";
 
 const HeroesAddForm = () => {
@@ -17,8 +14,6 @@ const HeroesAddForm = () => {
   const { filters, filtersLoadingStatus } = useSelector(
     (state) => state.filters
   );
-  // const dispatch = useDispatch();
-  // const { request } = useHttp();
 
   const onSubmitHandler = (e) => {
     e.preventDefault();
@@ -30,12 +25,6 @@ const HeroesAddForm = () => {
     };
 
     createHeroes(newHeroes).unwrap();
-
-    // request("http://localhost:3005/heroes", "POST", JSON.stringify(newHeroes))
-    //   .then((res) => console.log(res, "Отправка успешна"))
-    //   .then(dispatch(heroesCreated(newHeroes)))
-    //   .catch((err) => console.log(err));
-
     setHeroesName("");
     setHeroesDescr("");
     setHeroesElement("");
@@ -48,13 +37,9 @@ const HeroesAddForm = () => {
       return <option>Ошибка загрузки</option>;
     }
 
-    // Если фильтры есть, то рендерим их
     if (filters && filters.length > 0) {
       return filters.map(({ name, label }) => {
-        // Один из фильтров нам тут не нужен
-        // eslint-disable-next-line
         if (name === "all") return;
-
         return (
           <option key={name} value={name}>
             {label}

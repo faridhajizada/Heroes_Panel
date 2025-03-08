@@ -12,7 +12,7 @@ const HeroesList = () => {
   const activeFilter = useSelector((state) => state.filters.activeFilter);
 
   const filteredHeroes = useMemo(() => {
-    const filteredHeroes = heroes.slice(); //поверхностная копия
+    const filteredHeroes = heroes.slice();
     if (activeFilter === "all") {
       return filteredHeroes;
     } else {
@@ -20,9 +20,12 @@ const HeroesList = () => {
     }
   }, [heroes, activeFilter]);
 
-  const onDelete = useCallback((id) => {
-    deleteHeroes(id);
-  }, [deleteHeroes]);
+  const onDelete = useCallback(
+    (id) => {
+      deleteHeroes(id);
+    },
+    [deleteHeroes]
+  );
 
   if (isLoading) {
     return <Spinner />;
